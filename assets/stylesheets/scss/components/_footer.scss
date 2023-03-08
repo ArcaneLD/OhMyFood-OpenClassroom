@@ -1,0 +1,33 @@
+.footer {
+    color: $c-white;
+    background-color: $c-heavy-grey;
+    padding: 1rem 1rem 2rem 1rem;
+    
+    h3 {
+        font-family: $title;
+        color: $c-white;
+        margin-bottom: .65rem;
+        font-weight: 400;
+        letter-spacing: .05rem;
+    }
+    
+    .links {
+        a {
+            margin-top: 10px;
+            margin-bottom: .45rem;
+
+            i {
+                margin-right: 0.75rem;
+            }
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        padding: 2rem 5rem 3rem 5rem;
+
+        .links {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}

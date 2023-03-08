@@ -1,0 +1,245 @@
+.presentation {
+    .presentation-intro {
+        background-color: $c-light-grey;
+        padding: 1rem 2rem 3rem 2rem;
+        text-align: center;
+        
+        h3 {
+            padding: 1rem 3rem;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1.75rem;
+        }
+
+        .explore-button {
+            display: flex;
+            justify-content: center;
+    
+            a {
+                @include buttonGradient();
+                cursor: pointer;
+                font-weight: 600;
+                width: fit-content;
+                text-decoration: none;
+            }
+        }
+    }
+
+    #process {
+        padding: 2rem 1rem 3rem 1rem;
+        h3 {
+            padding-bottom: 1.5rem;
+            text-align: start;
+        }
+        .process-content {
+            .process-card {
+                background-color: $c-light-grey;;
+                padding: 1.5rem 2rem;
+                border-radius: 1.25rem;
+                position: relative;
+    
+                i {
+                    opacity: 50%;
+                }
+    
+                &:hover {
+                    background-color: $c-light-pink;
+                    cursor: pointer;
+
+                    i {
+                        color: $primere;
+                        opacity: 100%;
+                    }
+                }
+
+                .process-card-text {
+                    padding-left: 1.5rem;
+                    margin: 0;
+                    font-weight: 600;
+                }
+    
+                .process-card-content {
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    font-size: .75rem;
+                    color: $c-white;
+                }
+    
+                $circle-size: 1.25rem;
+                margin-left: calc($circle-size / 2);
+    
+                @include circle(
+                    $circle-size,
+                    $color: $primere, 
+                    $top: 50%
+                );
+    
+                @include boxShadow();
+            }
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        height: fit-content;
+        background: url(/assets/pictures/restaurants/jay-wennington-N_Y88TWmGwA-unsplash.jpg);
+        background-size: cover;
+        background-position: center;
+
+        .overlay {
+            width: 100%;
+            height: 100%;
+            padding: 1rem 1rem 2rem 1rem;
+            display: flex;
+            background-color: #1a1a1a80;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-around;
+            min-height: 65vh;
+
+            .presentation-intro {
+                background-color: rgba($c-light-grey, .75);
+                border-radius: 1rem;
+                flex: 1;
+                max-width: 25rem;
+            }
+
+            #process {
+                flex: 1;
+                padding: 2rem 1rem 2rem 1rem;
+                background-color: rgba($c-light-grey, .75);
+                border-radius: 1rem;
+                max-width: 25rem;
+        
+                h3, .process-content {
+                    width: 100%;
+                    gap: 1rem;
+                }
+        
+                h3 {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+#store {
+    padding: 2rem 1rem 3rem 1rem;
+    background-color: $c-light-grey;
+    color: black;
+    flex-grow: 1;
+
+    a, a:hover, a:active, a:focus, a:visited {
+        text-decoration: none; 
+        color:black;
+    }
+
+    h3 {
+        padding-bottom: 1.5rem;
+    }
+
+    .store-content {
+        @for $i from 0 through 2 {
+            & > .card:nth-child(#{$i}) {
+                position: relative;
+
+                &::after {
+                    content: "Nouveau";
+                    background-color: $tertiere;
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    font-size: .75rem;
+                    text-align: center;
+                    padding: 0.35rem 0.75rem;
+                    font-weight: 900;
+                    border-radius: 0.15rem;
+                    color: darken($tertiere, 40);
+                }
+            }
+        }
+
+        .card {
+            border-radius: 1rem;
+    
+            @include boxShadow();
+    
+            &:hover {
+                @include boxShadow(20px, 40%);
+            }
+
+            img {
+                width: 100%;
+                max-height: 10rem;
+                border-radius: 1rem 1rem 0 0;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .card-body {
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem;
+
+                .card-body-content {
+                    h4 {
+                        margin: 0 0 .15rem 0;
+                    }
+                    p {
+                        margin: 0;
+                        
+                    }
+                }
+                
+
+                i {
+                    font-size: 1.25rem;
+
+                    @include heartHover();
+                }
+            }
+
+            #store-first {
+                @include responsiveImage("jay-wennington-N_Y88TWmGwA-unsplash.jpg");
+            }
+
+            #store-second {
+                @include responsiveImage("stil-u2Lp8tXIcjw-unsplash.jpg");
+            }
+
+            #store-third {
+                @include responsiveImage("toa-heftiba-DQKerTsQwi0-unsplash.jpg");
+            }
+
+            #store-fourth {
+                @include responsiveImage("louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg");
+            }
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        padding: 2rem 5rem 3rem 5rem;
+
+        .store-content {
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .card {
+                flex: 40%;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .store-content {
+            .card {
+                flex: 20%;
+            }
+        }
+    }
+}

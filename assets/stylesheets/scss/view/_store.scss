@@ -1,0 +1,252 @@
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    background-color: $c-light-grey;
+    
+    img {
+        height: 17rem;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .menu {
+        background-color: $c-light-grey;
+        padding: 2rem .85rem 1.5rem .85rem;
+        border-radius: 2rem 2rem 0 0;
+        transform: translateY(-2rem);
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+
+            h2 {
+                font-family: $title;
+                font-weight: unset;
+            }
+
+            i {
+                font-size: 1.5rem;
+                margin-right: 1.75rem;
+
+                @include heartHover();
+            }
+        }
+
+        .menu-content {
+            margin-bottom: 2rem;
+
+            h4 {
+                color: inherit;
+                font-weight: unset;
+                margin-bottom: .85rem;
+                width: fit-content;
+                position: relative;
+                padding-bottom: 0.5rem;
+
+                &:after {
+                    content: "";
+                    border-bottom: 3px solid $tertiere;
+                    width: 3rem;
+                    height: 1px;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+            }
+
+            .menu-content-cards {
+                .menu-content-card {
+                    display: flex;
+                    background-color: $c-light-grey;
+                    border-radius: 1.25rem;
+                    transform: translateY(15px);
+                    animation: menu-card 1s forwards;
+                    opacity: 0;
+                    overflow: hidden;
+
+                    .menu-card-body {
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1;
+                        overflow: hidden;
+                        padding: .75rem 0 .75rem .75rem;
+
+                        p {
+                            margin: 0;
+                        }
+
+                        .menu-card-title {
+                            font-weight: 700;
+                            font-size: 1.1rem;
+                            margin-bottom: 0.35rem;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        }
+
+                        .menu-card-text {
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            width: 90%;
+                            font-size: .9rem;
+                        }
+                    }
+
+                    .menu-card-price {
+                        margin: 0;
+                        display: flex;
+                        align-items: flex-end;
+                        font-weight: 900;
+                        padding: .75rem 1.5rem .75rem 0;
+                    }
+
+                    @include boxShadow();
+
+
+                    @for $i from 1 through 10 {
+                        &:nth-child(#{$i}) {
+                            animation-delay: 150ms * $i;
+                        }
+                    }
+
+                    @keyframes menu-card {
+                        from  {
+                            transform: translateY(15px);
+                        }
+                        to {
+                            opacity: 100%;
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    &:hover {
+                        .menu-check {
+                            width: 4rem;
+
+                            i {
+                                animation: check-in 1s forwards;
+                            }
+                        }
+                    }
+
+                    .menu-check {
+                        border-radius: 0 1.25rem 1.25rem 0;
+                        background-color: $tertiere;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 0;
+                        transition: width .7s ease;
+                        overflow: hidden;
+                        
+                        i {
+                            color: $tertiere; 
+                            transform: rotate(90deg);
+                            opacity: 0;
+                            animation: check-out .8s;
+
+                            &::before {
+                                padding: 0.25rem;
+                                background-color: $c-white;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+
+                    @keyframes check-in {
+                        from {
+                            opacity: 0;
+                            transform: rotate(90deg);
+                        }
+                        to {
+                            opacity: 100%;
+                            transform: rotate(360deg);
+                        }
+                    }
+                    @keyframes check-out {
+                        from {
+                            opacity: 100%;
+                            transform: rotate(360deg);
+                        }
+                        to {
+                            opacity: 0;
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 3rem;
+
+            .menu-button {
+                @include buttonGradient();
+    
+                font-size: 1rem;
+                cursor: pointer;
+                font-weight: 600;
+                padding: 1rem 3rem;
+            }
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        flex-grow: 1;
+
+        img {
+            height: 27rem;
+        }
+
+        .menu {
+            width: 100%;
+            align-self: center;
+
+            padding: 3rem 0 4rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .menu-header {
+                margin: 0 0 1rem .5rem;
+            }
+
+            .menu-content-container {
+                display: flex;
+
+                .menu-content {
+                    flex: 33%;
+                    overflow: hidden;
+                    padding: .5rem .5rem 1rem .5rem;
+                    margin: 0;
+
+                    h4 {
+                        margin-bottom: 1.5rem;
+                    }
+
+                    .menu-content-cards {
+                        gap: 1rem;
+                        
+                        .menu-content-card {
+                            box-shadow: 0px 3px 10px 0px rgb(0 0 0 / 20%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .menu {
+            width: 95%;
+            padding: 3rem 1rem 4rem 1rem;
+            box-shadow: 0px 3px 13px 0px rgb(0 0 0 / 20%);
+            border-radius: 2rem;
+        }
+    }
+}
